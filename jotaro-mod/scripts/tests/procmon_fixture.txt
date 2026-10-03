@@ -1,0 +1,7 @@
+"Time of Day","Process Name","PID","Operation","Path","Result","Detail"
+"10:00:01","NSUNS4.exe","100","CreateFile","C:\G\data_win32\spc\1nrtbod1.xfbin","NAME NOT FOUND","Desired Access: Generic Read"
+"10:00:02","NSUNS4.exe","100","CreateFile","C:\G\data_win32\spc\1nrtbod1.xfbin","SUCCESS","Desired Access: Generic Read"
+"10:00:02","NSUNS4.exe","100","ReadFile","C:\G\data_win32\spc\1nrtbod1.xfbin","SUCCESS","Offset: 0"
+"10:00:03","NSUNS4.exe","100","CreateFile","C:\G\data_win32\spcload\1nrtspcload.xfbin","PATH NOT FOUND",""
+"10:00:04","Explorer.EXE","9","CreateFile","C:\G\data_win32\spc\other.xfbin","SUCCESS",""
+"10:00:05","NSUNS4.exe","100","CreateFile","C:\G\data\launch\data1.cpk","SUCCESS",""

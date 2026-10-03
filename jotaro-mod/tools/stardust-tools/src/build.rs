@@ -134,6 +134,20 @@ pub fn build_profile(project: &Path, cfg: &Config, cfg_hash: &str, name: &str) -
         "profile": name, "config_sha256": cfg_hash, "features_missing": skipped,
     });
     std::fs::write(dest.join("build_info.json"), serde_json::to_string_pretty(&info).unwrap()).map_err(|e| e.to_string())?;
+    // Ladder-style profiles stage one sub-payload per rung (<RUNG>/data_win32/...):
+    // give each its own manifest so the installer can install exactly one rung.
+    let mut rungs = vec![];
+    for e in std::fs::read_dir(&dest).map_err(|e| e.to_string())? {
+        let p = e.map_err(|e| e.to_string())?.path();
+        if p.join("data_win32").is_dir() {
+            write_manifest(&p)?;
+            rungs.push(p.file_name().unwrap().to_string_lossy().into_owned());
+        }
+    }
+    rungs.sort();
+    if !rungs.is_empty() {
+        println!("profile {name}: per-rung manifests for {rungs:?}");
+    }
     let n = write_manifest(&dest)?;
     println!("profile {name}: {n} files -> {}{}", dest.display(),
         if skipped.is_empty() { String::new() } else { format!(" (WARNING: nothing staged for {skipped:?})") });
@@ -209,6 +223,13 @@ include = ["ladder"]
         let x = m.as_array().unwrap().iter().find(|e| e["path"] == "data_win32/spc/x.txt").unwrap();
         assert_eq!(x["sha256"], "BA7816BF8F01CFEA414140DE5DAE2223B00361A396177A9CB410FF61F20015AD");
         assert!(build_profile(d.path(), &cfg, &h, "b").unwrap_err().contains("nothing staged"));
+
+        let rung = d.path().join("out/stardust/stage/ladder/L0/data_win32/spc");
+        std::fs::create_dir_all(&rung).unwrap();
+        std::fs::write(rung.join("1dio.txt"), b"d").unwrap();
+        build_profile(d.path(), &cfg, &h, "b").unwrap();
+        let m = std::fs::read_to_string(d.path().join("out/payload/b/L0/manifest.json")).unwrap();
+        assert!(m.contains("\"data_win32/spc/1dio.txt\""));
     }
 
     #[test]

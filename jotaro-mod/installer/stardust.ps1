@@ -84,7 +84,8 @@ function Install-Set {
     $payloadRoot = Get-Canonical $Payload
     $manifestPath = Join-Path $payloadRoot 'manifest.json'
     if (-not (Test-Path -LiteralPath $manifestPath)) { throw "No manifest.json in $payloadRoot (build it with: stardust build)" }
-    $manifest = @(Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json)
+    # -InputObject (not a pipeline) so Windows PowerShell 5.1 yields one item per array element.
+    $manifest = @(ConvertFrom-Json -InputObject (Get-Content -LiteralPath $manifestPath -Raw))
     $entries = @($manifest | Where-Object { $_.path -like 'data_win32/*' })
     if ($entries.Count -eq 0) { throw "Manifest lists no data_win32/ files: $manifestPath" }
 

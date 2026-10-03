@@ -15,3 +15,7 @@ A locally generated body candidate was installed as a loose Storm 4 file after u
 
 Generated assets and downloaded tools are deliberately excluded. Use assets from your own installations only. The scripts keep generated output under `out/` and should be reviewed before use.
 
+
+## Stardust Storm (run 1)
+
+Start with [PROGRESS.md](PROGRESS.md), [USER_TEST_CARD.md](USER_TEST_CARD.md), [FOUNDATION_REPORT.md](FOUNDATION_REPORT.md), and [FINAL_REPORT.md](FINAL_REPORT.md). New code lives in `scripts/`, `tools/stardust-tools/`, `installer/`, and `mod/config/`.
