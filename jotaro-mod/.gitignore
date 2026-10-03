@@ -46,3 +46,4 @@
 !/out/rust/src/
 !/out/phase5/*.ps1
 !/out/phase5/*.bat
+/installer/state/
