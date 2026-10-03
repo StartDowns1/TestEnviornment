@@ -11,7 +11,7 @@
 
 ## 2026-10-02 — Phase 2 reader/extractor
 
-- Rust CLI source/build notes: [rust/README.md](rust/README.md).
+- Rust CLI source/build notes: [out/rust/README.md](out/rust/README.md).
 - Phase 2 results and round-trip hashes: [PHASE2_RESULTS.md](PHASE2_RESULTS.md).
 - Generated catalogs, extracted game files, tool binaries, and build outputs live under ignored `out/phase2-work`, `out/tools`, and `out/rust/target`; they are local-only and must not be committed.
 - Rust CLI catalog completed both supplied trees: ASBR 36 CPK + 5 loose XFBIN; Storm 4 29 CPK + 9 loose XFBIN; zero archive listing failures.
@@ -45,3 +45,9 @@
 - PowerShell syntax and mock install/uninstall flows passed: loose-file hash check; creation and cleanup of missing directories; restoration of an existing override from a verified backup; leaving a changed file untouched; and successful retry after the conflict is resolved. These tests used only disposable mock folders under `out/` and did not launch the actual game.
 - Runtime test: user reported Naruto looked unchanged. Troubleshoot the loose-file/loader path and candidate validity before claiming a successful in-game port. This project’s scripts do not communicate with Steam.
 
+
+## 2026-10-03 — Stardust Storm run 1 (cloud container)
+
+- Ran in a cloud Linux container that holds only the repository. No game installs, extracted catalogs, community tools, Blender, PowerShell, or dio_port payload are present, so no game bytes were read or written.
+- Done offline: asset guard plus pre-commit hook, `.gitignore` extension, doc link fixes, `mod/config/stardust.toml`, the `stardust-tools` Rust crate (`findstr`, `magic`, `build`, `manifest`), the ProcMon summarizer, the new installer, and the evidence-gathering scripts the user runs locally.
+- Game-dependent tasks (B1–B5, C2–C5, D, E, F) are BLOCKED with exact run instructions. See PROGRESS.md, FOUNDATION_REPORT.md, and USER_TEST_CARD.md.

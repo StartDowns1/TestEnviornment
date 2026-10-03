@@ -1,0 +1,114 @@
+# STARDUST STORM — single source of truth. Every build step reads this file.
+# Original-string values are placeholders until Stage C finds the real UI text table;
+# `max_len` is filled in only once the table's limits are known (0 = unknown).
+
+[build]
+name = "STARDUST STORM"
+version = "0.1"
+stamp = "STARDUST STORM v0.1"
+
+[features]
+ui_text = false        # turn on once the Stage C text format is proven (C3)
+ui_art = false         # Stage D
+ui_layout = false      # Stage E (Variant C; needs --allow-modify-originals)
+characters = false     # Stage F
+ladder = true          # Stage B experiment rungs
+
+[palette]
+stardust_purple = "#4B1E78"
+deep_violet = "#1C0B33"
+star_gold = "#E8B830"
+pale_gold = "#F6E3A1"
+accent_teal = "#2BB3A3"
+
+# Slot mapping: Storm 4 slot code -> ASBR character. Storm codes for Sasuke/Lee/Kakashi
+# are UNVERIFIED until docs/slots.md is filled from the Storm catalog (F2).
+[[characters]]
+key = "jotaro"
+name = "Jotaro Kujo"
+title = "Star Platinum"
+asbr_code = "2jsp01"
+storm_slot = "1nrt"           # Naruto (confirmed slot code from Phase 3)
+storm_slot_name = "Naruto Uzumaki"
+source = "asbr"
+
+[[characters]]
+key = "dio"
+name = "DIO"
+title = "The World"
+asbr_code = "UNKNOWN"         # fill from catalog (F1)
+storm_slot = "UNVERIFIED-sasuke"
+storm_slot_name = "Sasuke Uchiha"
+source = "dio_port"           # community payload, local use only, never committed
+
+[[characters]]
+key = "kakyoin"
+name = "Noriaki Kakyoin"
+title = "Hierophant Green"
+asbr_code = "UNKNOWN"
+storm_slot = "UNVERIFIED-rocklee"
+storm_slot_name = "Rock Lee"
+source = "asbr"
+
+[[characters]]
+key = "polnareff"
+name = "J.P. Polnareff"
+title = "Silver Chariot"
+asbr_code = "UNKNOWN"
+storm_slot = "UNVERIFIED-kakashi"
+storm_slot_name = "Kakashi Hatake"
+source = "asbr"
+
+# Visible-change ladder (C5), in the order the strings appear after launch.
+# `original` = English text seen in game; `max_len` 0 = table limit unknown.
+[[strings]]
+original = "Free Battle"
+replacement = "Stardust Showdown"
+max_len = 0
+[[strings]]
+original = "Options"
+replacement = "Stand Settings"
+max_len = 0
+[[strings]]
+original = "Gallery"
+replacement = "Joestar Archive"
+max_len = 0
+[[strings]]
+original = "Online"
+replacement = "Offline Only"
+max_len = 0
+[[strings]]
+original = "Adventure"
+replacement = "Bizarre Journey"
+max_len = 0
+[[strings]]
+original = "Story"
+replacement = "Egypt Arc"
+max_len = 0
+[[strings]]
+original = "Training"
+replacement = "Ora Practice"
+max_len = 0
+[[strings]]
+original = "Collection"
+replacement = "Stand Arrows"
+max_len = 0
+[[strings]]
+original = "Shop"
+replacement = "Kame Shop"
+max_len = 0
+[[strings]]
+original = "Customize"
+replacement = "Pose Studio"
+max_len = 0
+[[strings]]
+original = "Ninja Info Cards"
+replacement = "Stand Cards"
+max_len = 0
+
+[profiles.ui-only]
+include = ["ui"]
+[profiles.ui-plus-characters]
+include = ["ui", "characters"]
+[profiles.ladder]
+include = ["ladder"]

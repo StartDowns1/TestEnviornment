@@ -11,3 +11,38 @@
 /out/phase5/backups/
 /out/phase5/install-state.json
 
+
+# --- stardust-run-1 additions (existing rules above are kept) ---
+/out/previews/
+/out/payload/
+/out/stardust/
+/out/logs/
+/out/mock*/
+/tools/**/target/
+*.cpk
+*.xfbin
+*.dds
+*.gfx
+*.swf
+*.blend
+*.exe
+*.dll
+*.png
+*.jpg
+*.jpeg
+*.wav
+*.adx
+*.hca
+*.awb
+*.acb
+*.usm
+*.bin
+*.bak
+*.zip
+*.7z
+*.rar
+*.pdb
+# Legacy authored code under out/ stays tracked (none of it uses a denied extension).
+!/out/rust/src/
+!/out/phase5/*.ps1
+!/out/phase5/*.bat

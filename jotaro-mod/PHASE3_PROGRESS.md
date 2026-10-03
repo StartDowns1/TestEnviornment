@@ -19,7 +19,7 @@ Date: 2026-10-02
 - Exported `1nrtbod1.xfbin` from the Jotaro body collection with mesh, bones, dynamics, and embedded textures. The exporter renamed the `2jsp01` content prefix to `1nrt` for the Naruto target slot.
 - Re-imported the export successfully: 5 XFBIN pages; 7 mesh objects; 11,251 vertices; 16,598 faces; one 182-bone armature; 6 renamed materials. The +9 vertex count is recorded as an exporter change; the face count and bone count were preserved.
 - The candidate's first four bytes are `NUCC`. Size is 2,626,587 bytes and SHA-256 is `54B4CEC41AA38223A7EBABE4F9A5ED068E2A5012BE13F6F5C1A906F25C1AAF75`.
-- The local test payload is `out/phase5/payload/data_win32/spc/1nrtbod1.xfbin`; [out/PHASE5_README.md](PHASE5_README.md) documents the launcher and restore step. The file was copied to the supplied Storm 4 folder as a new loose override after confirming that the target file did not previously exist. No original game archive or other game file was changed.
+- The local test payload is `out/phase5/payload/data_win32/spc/1nrtbod1.xfbin`; [PHASE5_README.md](PHASE5_README.md) documents the launcher and restore step. The file was copied to the supplied Storm 4 folder as a new loose override after confirming that the target file did not previously exist. No original game archive or other game file was changed.
 
 ## Skeleton / asset limits
 

@@ -4,10 +4,10 @@ Date: 2026-10-02
 
 ## Delivered
 
-- Rust CLI source in [`rust/src/main.rs`](rust/src/main.rs), with commands to list a CPK, extract into `out/`, round-trip an archive, and catalog a game tree.
+- Rust CLI source in [`out/rust/src/main.rs`](out/rust/src/main.rs), with commands to list a CPK, extract into `out/`, round-trip an archive, and catalog a game tree.
 - The CLI checks CPK magic, restricts generated output to the project `out/` folder, validates archive entry paths before extraction, and never writes to game archives.
 - CPK parsing, stored-entry extraction, and CPK rebuilding are delegated to the existing [CPK Tool](https://github.com/darkruss48/cpk-toolkit), rather than duplicated. Its executable is locally stored at `out/tools/cpk-tool.exe` and ignored by Git; the tool is not vendored.
-- Build and dependency instructions are in [`rust/README.md`](rust/README.md).
+- Build and dependency instructions are in [`out/rust/README.md`](out/rust/README.md).
 
 ## Verification
 
