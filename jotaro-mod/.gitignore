@@ -1,0 +1,13 @@
+/out/phase2-work/
+/out/tools/
+/out/rust/target/
+/out/rust/cargo_home/
+/out/rust/probe/
+/out/phase3-work/**
+!/out/phase3-work/
+!/out/phase3-work/*.py
+/out/phase4-work/
+/out/phase5/payload/
+/out/phase5/backups/
+/out/phase5/install-state.json
+
