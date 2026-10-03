@@ -49,3 +49,6 @@ installer\Stardust.bat -Action install -GameRoot "<Storm 4 folder>" -Payload out
 
 ## 5+. Build stamp, renamed menus, art, other characters
 Not built in this run. They need the UI text format and texture locations (Stages C–E), which need game files. See FINAL_REPORT.md.
+
+## Quick launcher
+Double-click `installer\Launch_Stardust.bat`. It asks for the Storm 4 folder the first time, then for a payload folder (Enter = `out\payload\ladder\L0`). It asks you to type OFFLINE, installs that payload if it isn't installed yet, and starts `NSUNS4.exe`. Undo with `installer\Stardust.bat -Action uninstall`.

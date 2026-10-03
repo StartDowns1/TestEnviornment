@@ -18,7 +18,7 @@
   pwsh installer/stardust.ps1 -Action install -Payload out/payload/ladder/L0 -Set L0 -DryRun
 #>
 param(
-    [Parameter(Mandatory = $true)][ValidateSet('install', 'uninstall', 'status')][string] $Action,
+    [Parameter(Mandatory = $true)][ValidateSet('install', 'uninstall', 'status', 'launch')][string] $Action,
     [string] $GameRoot,
     [string] $Payload,
     [string] $Set,
@@ -211,6 +211,25 @@ try {
         }
         'install' { Assert-NotRunning; if (-not $DryRun) { Assert-Offline }; Install-Set; exit 0 }
         'uninstall' { Assert-NotRunning; Uninstall-Set; exit 0 }
+        'launch' {
+            # Install -Payload as -Set (unless that set is already installed), then start the game offline.
+            Assert-NotRunning; Assert-Offline
+            $s = Read-State
+            $exeCheck = Join-Path (Resolve-GameRoot $s) 'NSUNS4.exe'
+            if (-not (Test-Path -LiteralPath $exeCheck -PathType Leaf)) { throw "NSUNS4.exe not found at $exeCheck. Nothing was changed." }
+            if ($Payload -and $Set -and -not ($s -and (Get-SetRecord $s $Set))) { Install-Set }
+            $s = Read-State
+            if (-not $s -or -not @($s.sets).Count) { throw 'No mod set is installed. Pass -Payload and -Set.' }
+            $game = Resolve-GameRoot $s
+            $exe = Join-Path $game 'NSUNS4.exe'
+            if (-not (Test-Path -LiteralPath $exe -PathType Leaf)) { throw "NSUNS4.exe not found in $game" }
+            Write-Host ("Active sets: " + (@($s.sets).name -join ', ')) -ForegroundColor Cyan
+            if ($DryRun) { Say "Would start $exe"; exit 0 }
+            Write-Host 'Starting Storm 4. Do not select online modes.' -ForegroundColor Cyan
+            $p = Start-Process -FilePath $exe -WorkingDirectory $game -PassThru
+            Write-Host "Started NSUNS4.exe (PID $($p.Id))." -ForegroundColor Green
+            exit 0
+        }
     }
 } catch {
     Write-Host "ERROR: $($_.Exception.Message)" -ForegroundColor Red
